@@ -1,5 +1,4 @@
 #!/usr/bin/python3.4
-
 import sys
 import oauth2 as oauth
 import json
@@ -13,7 +12,7 @@ def process_all( n ):
 
 def write_to_file( source, filename, content,date ):
 	try:
-		fullpath = source+'/'+date+'/'+filename
+		fullpath = source+'/'+date+'/'+filename+'.txt'
 		print (fullpath)
 		os.makedirs(os.path.dirname(fullpath), exist_ok=True)
 		file = open(fullpath,'w+')
@@ -38,7 +37,7 @@ def process_all_handles( handles ):
 				d= each.get('date')
 				#print( title )
 				#print( d )
-				filename = title.replace(' ','-').replace('/','').split('http')[0]
+				filename = title.replace(' ','').replace('/','').replace(':','').replace('.','').replace(',','').split('http')[0]
 				
 				write_to_file(source=handle, filename=filename, content=urlcontent,date=d)
 			except Exception as e:
