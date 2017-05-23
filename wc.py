@@ -1,3 +1,4 @@
+
 import sys
 
 
@@ -23,12 +24,13 @@ def count( filename):
                 
         fileread.close()
     except Exception as e:
-        print "in count" , e
+        print  e
+        sys.exit(1)
 
 
 if __name__ == '__main__':
     if len(sys.argv) < 2:
-        print 'Usage: count <pattern> <text file name>'
+        print 'Usage: python wc.py <text file name>'
         sys.exit(0)
 
     filename = str(sys.argv[1])
