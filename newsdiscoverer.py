@@ -47,8 +47,6 @@ def get_title_content( twitterhandle ):
 	consumer = oauth.Consumer(key="5low1XEYPhugHUpn0zyhdYHgj", secret="DfDofxgrjzJHCtM23MKlZ5YQV8W87ALSnnEKAR52RnBorI0drK")
 	request_token_url = str("https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=") + twitterhandle + str("&count=100")
 
-	request_token_url.replace('\{handle\}', twitterhandle)
-	#print( request_token_url)
 	client = oauth.Client(consumer)
 
 	header = { 'Accept': 'application/json' , 'Content-Type' : 'application/json' }
