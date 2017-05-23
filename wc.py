@@ -2,10 +2,25 @@
 import sys
 
 
-wc={}
-lc={}
+def out( _map ):
+    try:
+        for key in _map:
+            out = ''
+            if key == ' ':
+                out = 'spaces : '
+            elif key == '\t':
+                out = 'tabs : '
+            elif key == '\n' or key == '\r':
+                out = 'lines : '
+            else:
+                out = str(key) + ' : '
+            print "%32s" % out , str(_map[key])
 
-def count( filename):
+    except Exception as e:
+        print e
+
+
+def count( filename, wc, lc):
     try:
         fileread = open(filename, 'r')
         word=''
@@ -28,30 +43,22 @@ def count( filename):
         sys.exit(1)
 
 
+def process(filename):
+    wc={}
+    lc={}
+    count(filename,wc,lc)
+    print "LETTER COUNT:"
+    out(lc)
+    print "WORD COUNT"
+    out(wc)
+
+
+
 if __name__ == '__main__':
     if len(sys.argv) < 2:
         print 'Usage: python wc.py <text file name>'
         sys.exit(0)
 
     filename = str(sys.argv[1])
-    
-    count(filename)
-    try:
-        print "LETTER COUNT:"
-        for key in lc:
-            out = ''
-            if key == ' ':
-                out = 'spaces : '
-            elif key == '\t':
-                out = 'tabs : '
-            elif key == '\n' or key == '\r':
-                out = 'lines : '
-            else:
-                out = str(key) + ' : '
-            print "%32s" % out , str(lc[key])
+    process( filename )
 
-        print "WORD COUNT"
-        for key in wc:
-            print "%32s" % str(key) , " : "  , str(wc[key])
-    except Exception as e:
-        print e
